@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マップビューア</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>マップビューア</h1>
+
+    <div class="control-panel">
+        <fieldset>
+            <legend>マップ設定</legend>
+            <label for="seedInput">サーバーID:</label>
+            <input type="text" id="seedInput" value="1234567890">
+            <label for="rangeInput">表示範囲:</label>
+            <input type="number" id="rangeInput" value="40" style="width: 60px;">
+            <button id="generateButton">表示</button>
+        </fieldset>
+
+        <fieldset>
+            <legend>ズーム</legend>
+            <div class="zoom-control">
+                <button id="zoomOutBtn" title="10%縮小">-</button>
+                <input type="number" id="zoomInput" value="100" min="10" step="10">
+                <span>%</span>
+                <button id="zoomInBtn" title="10%拡大">+</button>
+            </div>
+        </fieldset>
+    </div>
+
+    <div id="map-wrapper">
+        <div id="mapContainer"></div>
+        <div id="hotspotOverlayContainer"></div>
+    </div>
+    
+    <script type="module" src="viewer-script.js"></script>
+</body>
+</html>
