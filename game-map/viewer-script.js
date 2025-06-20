@@ -12,7 +12,7 @@ const zoomInBtn = document.getElementById('zoomInBtn');
 const zoomOutBtn = document.getElementById('zoomOutBtn');
 
 // --- 定数定義 ---
-const COLOR_MAP = {
+/*const COLOR_MAP = {
     "BASECAMP":      "#FF69B4",
     "SNOW_MOUNTAIN": "#FFFFFF",
     "MOUNTAIN":      "#8B4513",
@@ -25,6 +25,20 @@ const COLOR_MAP = {
     "JUNGLE":        "#32CD32",
     "VOLCANO":       "#FF4500",
     "TUNDRA":        "#B0C4DE",
+};*/
+const COLOR_MAP = {
+    "BASECAMP": "rgb(255, 0, 255)",
+    "SNOW_MOUNTAIN": "rgb(255, 255, 255)",
+    "MOUNTAIN": "rgb(139, 69, 19)",
+    "HILL": "rgb(205, 133, 63)",
+    "PLAINS": "rgb(154, 245, 64)",
+    "DESERT": "rgb(245, 222, 179)",
+    "RIVER": "rgb(65, 105, 225)",
+    "FOREST": "rgb(46, 197, 46)",
+    "SWAMP": "rgb(116, 160, 40)",
+    "JUNGLE": "rgb(0, 100, 0)",
+    "VOLCANO": "rgb(255, 0, 0)",
+    "TUNDRA": "rgb(176, 196, 222)"
 };
 const DEFAULT_COLOR = "#333333";
 
