@@ -1,0 +1,196 @@
+/* 基本レイアウト */
+#textcombine .funcbody {
+    font-family: sans-serif;
+}
+
+#textcombine .funcbody .container {
+    display: flex;
+    gap: 20px;
+}
+
+#textcombine .funcbody .editor,
+#textcombine .funcbody .preview-area {
+    flex: 1; /* 左右均等に分割 */
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+/* 左側：エディタ */
+#textcombine .funcbody .editor {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+/* ★追加: 全クリアボタン */
+#textcombine .funcbody .editor #tc-clear-all {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #dc3545;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+#textcombine .funcbody .editor #tc-clear-all:hover {
+    background-color: #c82333;
+}
+
+
+/* ★変更: labelをflexにしてボタンを右寄せ */
+#textcombine .funcbody .editor label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+/* ★追加: クリアボタン */
+#textcombine .funcbody .editor .tc-clear-field {
+    background: none;
+    border: 1px solid #ccc;
+    color: #555;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 12px;
+    cursor: pointer;
+}
+#textcombine .funcbody .editor .tc-clear-field:hover {
+    background: #eee;
+}
+
+
+#textcombine .funcbody .editor textarea {
+    width: 100%;
+    box-sizing: border-box; /* paddingを含めてwidth 100% */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* 1行指定のtextarea */
+#textcombine .funcbody .editor textarea[rows="1"] {
+    height: 2.4em; /* 1行の高さを確保 */
+    resize: none;
+    overflow: hidden; /* スクロールバー非表示 */
+}
+
+/* 特長の赤枠エラー */
+#textcombine .funcbody .editor textarea#tc-features.error {
+    border: 2px solid red;
+}
+
+/* 仕様テーブル */
+#textcombine .funcbody .editor #tc-specs {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+}
+
+#textcombine .funcbody .editor #tc-specs td {
+    border: 1px solid #ddd;
+    vertical-align: middle; /* ★追加 */
+}
+
+#textcombine .funcbody .editor #tc-specs input[type="text"] {
+    width: 100%;
+    border: none;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* ★追加: 行削除ボタンのセル */
+#textcombine .funcbody .editor #tc-specs td.tc-spec-actions {
+    width: 40px; /* 固定幅 */
+    text-align: center;
+    border-left: none; /* 入力欄との境界を消す */
+}
+
+/* ★追加: 行削除ボタン */
+#textcombine .funcbody .editor .tc-remove-spec-row {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    line-height: 1; /* ボタンテキストの中央寄せ */
+}
+#textcombine .funcbody .editor .tc-remove-spec-row:hover {
+    background: #f1b0b7;
+}
+
+/* ★変更: 削除ボタンのセルを考慮して、入力セルのボーダーを調整 */
+#textcombine .funcbody .editor #tc-specs tr td:nth-child(2) {
+    border-right: none;
+}
+
+
+#textcombine .funcbody .editor #tc-add-spec {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* 右側：プレビュー */
+#textcombine .funcbody .preview-area #tc-copy-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+#textcombine .funcbody .preview-area #tc-preview {
+    border: 1px solid #ccc;
+    background: #ffffff;
+    min-height: 400px;
+    padding: 20px;
+    overflow-y: auto;
+    word-break: break-all; /* 長い単語の折り返し */
+}
+
+/* プレビュー内のスタイル */
+#textcombine .funcbody .preview-area #tc-preview h3 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+#textcombine .funcbody .preview-area #tc-preview p {
+    margin: 0.5em 0 1em 0;
+    line-height: 1.6;
+}
+
+#textcombine .funcbody .preview-area #tc-preview table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+}
+
+#textcombine .funcbody .preview-area #tc-preview table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    vertical-align: top;
+}

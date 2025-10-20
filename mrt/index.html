@@ -3,19 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>機能タブ付きページ</title>
+<title>機能</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/image.css">
 <link rel="stylesheet" href="css/cp.css">
+<link rel="stylesheet" href="css/textcombine.css">
 <script src="js/script.js"></script>
 <script src="js/image.js"></script>
 <script src="js/cp.js"></script>
+<script src="js/textcombine.js"></script>
 </head>
 <body>
 
 <!-- タブボタン -->
 <div class="tabbar" id="tabbar"></div>
 
+<!-- 各機能ページ -->
+<div class="funcpage" id="textcombine">
+  <div class="funcmeta">
+    <div class="functitle">商品説明整形</div>
+  </div>
+  <div class="funcbody">
+    
+              <div class="container">
+                <div class="editor">
+                    <h2>入力エリア</h2>
+                    <button id="tc-clear-all" type="button" class="danger">全入力クリア</button>
+                    
+                    <label for="tc-catchcopy">
+                        キャッチコピー (1行)
+                        <button type="button" class="tc-clear-field" data-target="tc-catchcopy">クリア</button>
+                    </label>
+                    <textarea id="tc-catchcopy" rows="1"></textarea>
+                    
+                    <label for="tc-intro">
+                        商品紹介 (1行)
+                        <button type="button" class="tc-clear-field" data-target="tc-intro">クリア</button>
+                    </label>
+                    <textarea id="tc-intro" rows="1"></textarea>
+                    
+                    <label for="tc-features">
+                        特長 (改行可)
+                        <button type="button" class="tc-clear-field" data-target="tc-features">クリア</button>
+                    </label>
+                    <textarea id="tc-features" rows="5">・</textarea>
+                    
+                    <label>
+                        仕様
+                        <button type="button" class="tc-clear-field" data-target="tc-specs-body">テーブルリセット</button>
+                    </label>
+                    <table id="tc-specs">
+                        <tbody id="tc-specs-body">
+                            <tr>
+                                <td><input type="text" placeholder="項目名"></td>
+                                <td><input type="text" placeholder="値"></td>
+                                <td class="tc-spec-actions">
+                                    <button type="button" class="tc-remove-spec-row">×</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button id="tc-add-spec" type="button">+</button>
+                </div>
+                
+                <div class="preview-area">
+                    <button id="tc-copy-btn" type="button">プレビューをコピー</button>
+                    <div id="tc-preview">
+                        </div>
+                </div>
+            </div>
+
+
+  </div>
+</div>
 
 
 <!-- image start-->    
@@ -62,7 +122,11 @@
                 </div>
 
                 <div class="download-area">
-                    <button id="download-button">ダウンロード</button>
+                    <button class="download-button" id="download-1">サムネイル</button>
+                    <button class="download-button" id="download-2">メイン1</button>
+                    <button class="download-button" id="download-3">メイン2</button>
+                    <button class="download-button" id="download-4">メイン3</button>
+                    <button class="download-button" id="download-5">回路図</button>
                 </div>
             </div>
         </div>
@@ -75,7 +139,7 @@
 </div>
 <!-- image end -->
 
-<!-- cp start -->
+<!-- cp start
 <div class="funcpage" id="cp">
   <div class="funcmeta">
     <div class="functitle">cp</div>
@@ -100,7 +164,7 @@
 
   </div>
 </div>
-<!-- cp end -->
+cp end -->
 
 <!-- 各機能ページ
 <div class="funcpage" id="func1">

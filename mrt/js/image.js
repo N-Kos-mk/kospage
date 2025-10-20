@@ -18,7 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const centerHBtn = $('#center-h');
     
     const thumbnailCanvas = $('#thumbnail-canvas');
-    const downloadBtn = $('#download-button');
+    const downloadBtn1 = $('#download-1');
+    const downloadBtn2 = $('#download-2');
+    const downloadBtn3 = $('#download-3');
+    const downloadBtn4 = $('#download-4');
+    const downloadBtn5 = $('#download-5');
 
     // Canvas Context
     const pasteCtx = pasteCanvas.getContext('2d');
@@ -95,7 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
         centerHBtn.addEventListener('click', () => centerImage(true, false));
         
         // 7. ダウンロード
-        downloadBtn.addEventListener('click', handleDownload);
+        downloadBtn1.addEventListener('click', () => handleDownload(1));
+        downloadBtn2.addEventListener('click', () => handleDownload(2));
+        downloadBtn3.addEventListener('click', () => handleDownload(3));
+        downloadBtn4.addEventListener('click', () => handleDownload(4));
+        downloadBtn5.addEventListener('click', () => handleDownload(5));
     }
 
     // --- 色処理 ---
@@ -402,7 +410,7 @@ function drawCanvas(ctx, outputWidth, outputHeight, state) {
 
     // --- ダウンロード処理 ---
 
-    function handleDownload() {
+    function handleDownload(number) {
         const id = imageIdInput.value.trim();
         if (!id) {
             alert('IDを入力してください。');
@@ -413,20 +421,22 @@ function drawCanvas(ctx, outputWidth, outputHeight, state) {
             alert('画像を貼り付けてください。');
             return;
         }
-
-        // 1. トリミング (1200x1200)
         // オフスクリーンCanvasを作成
         const downloadCanvasTrim = document.createElement('canvas');
         const trimCtxDown = downloadCanvasTrim.getContext('2d');
         
-        // drawCanvasをダウンロードサイズで実行
-        drawCanvas(trimCtxDown, DOWNLOAD_TRIM_SIZE, DOWNLOAD_TRIM_SIZE, trimState);
-        
         // ダウンロード
-        downloadImage(downloadCanvasTrim, `${id}_2.jpg`);
+        if (number == 1) {
+            drawCanvas(thumbCtxDown, DOWNLOAD_THUMBNAIL_SIZE, DOWNLOAD_THUMBNAIL_SIZE, trimState);
+            downloadImage(downloadCanvasTrim, `${id}_1.jpg`);
+        } else {
+            drawCanvas(trimCtxDown, DOWNLOAD_TRIM_SIZE, DOWNLOAD_TRIM_SIZE, trimState);
+            downloadImage(downloadCanvasTrim, `${id}_${number}.jpg`);
+        }
+        
 
         
-        // 2. サムネイル (230x230)
+        /*/ 2. サムネイル (230x230)
         const downloadCanvasThumb = document.createElement('canvas');
         const thumbCtxDown = downloadCanvasThumb.getContext('2d');
         
@@ -434,7 +444,7 @@ function drawCanvas(ctx, outputWidth, outputHeight, state) {
         drawCanvas(thumbCtxDown, DOWNLOAD_THUMBNAIL_SIZE, DOWNLOAD_THUMBNAIL_SIZE, trimState);
         
         // ダウンロード
-        downloadImage(downloadCanvasThumb, `${id}_3.jpg`);
+        downloadImage(downloadCanvasThumb, `${id}_3.jpg`);*/
     }
 
     function downloadImage(canvas, filename) {
@@ -446,6 +456,8 @@ function drawCanvas(ctx, outputWidth, outputHeight, state) {
         a.click();
         document.body.removeChild(a);
     }
+    
+
 
     // --- 実行 ---
     initialize();
