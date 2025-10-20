@@ -1,0 +1,147 @@
+/* グローバルリセット（簡易） */
+.funcbody * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.funcbody {
+    font-family: sans-serif;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.funcbody .main-container {
+    display: flex;
+    flex-wrap: wrap; /* レスポンシブ対応 */
+    gap: 20px;
+}
+
+/* 左側パネル */
+.funcbody .left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 200px; 
+}
+
+.funcbody .id-input-area {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.funcbody .image-id-input {
+    flex-grow: 1;
+    padding: 5px;
+}
+
+/* 画像貼り付け枠 */
+.funcbody .paste-area-wrapper {
+    width: 200px;
+    height: 200px;
+    border: 2px dashed #ccc;
+    background-color: #eee;
+    padding: 5px; /* 枠線とcanvasの間に少し余白 */
+    cursor: pointer;
+}
+
+.funcbody .paste-area-wrapper.selected {
+    border: 2px solid #007bff; /* 選択時の青枠 */
+}
+
+/* v1から変更: canvasは親要素いっぱいに広がる */
+.funcbody #paste-canvas {
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* JSで上書きされる */
+}
+
+.funcbody .color-input-area {
+    display: flex;
+    gap: 10px;
+}
+
+.funcbody #bg-color-apply {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* 右側パネル */
+.funcbody .right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
+    min-width: 300px; /* 折り返し時の最小幅 */
+}
+
+.funcbody .output-area {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.funcbody .output-area label {
+    font-weight: bold;
+}
+
+/* トリミング枠 */
+.funcbody .trim-area-wrapper {
+    /* position: relative; v6削除: ボタンの基準を解除 */
+    width: 300px;
+/* ... (snip) ... */
+}
+/* ... (snip) ... */
+.funcbody .trim-controls {
+    /* v6変更: 絶対配置を解除し、flexレイアウトに変更 */
+    display: flex;
+    gap: 5px;
+    margin-top: 5px; /* 枠との間隔 */
+    justify-content: left;
+    /* z-index: 10; 削除 */
+}
+.funcbody .trim-controls button {
+    /* v6変更: 背景色を不透明に変更 */
+    background-color: #f0f0f0;
+    padding: 5px;
+/* ... (snip) ... */
+}
+/* v6追加: ホバーエフェクト */
+.funcbody .trim-controls button:hover {
+     background-color: #e0e0e0;
+}
+
+
+/* サムネイル枠 */
+.funcbody .thumbnail-area-wrapper {
+    width: 300px;
+    height: 300px;
+    border: 1px solid #999;
+    overflow: hidden;
+}
+
+.funcbody #thumbnail-canvas {
+    /* v1から変更: width/heightはHTMLで指定 */
+    display: block;
+    background-color: #000; /* JSで上書きされる */
+}
+
+/* ダウンロードボタン */
+.funcbody .download-area {
+    margin-top: 10px; 
+}
+
+.funcbody #download-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.funcbody #download-button:hover {
+    background-color: #218838;
+}

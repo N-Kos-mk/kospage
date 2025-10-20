@@ -1,0 +1,51 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background: #f6f6f6;
+  }
+
+  /* タブバー全体 */
+  .tabbar {
+    display: flex;
+    background: #333;
+    overflow-x: auto;
+  }
+
+  /* タブボタン */
+  .tabbar button {
+    flex: 1;
+    padding: 12px;
+    background: #333;
+    color: #ccc;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .tabbar button:hover {
+    background: #444;
+  }
+  .tabbar button.active {
+    background: #fff;
+    color: #000;
+    font-weight: bold;
+  }
+
+  /* 各機能ページ */
+  .funcpage {
+    display: none;
+    padding: 20px;
+    background: #fff;
+  }
+  .funcpage.active {
+    display: block;
+  }
+
+  /* metaとbodyを分離（オプション） */
+  .funcmeta {
+    display: none; /* functitleからタイトルだけ拾うので非表示 */
+  }
+
+  .funcbody {
+    margin-top: 10px;
+  }

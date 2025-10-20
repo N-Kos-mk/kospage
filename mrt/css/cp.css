@@ -1,0 +1,121 @@
+/* すべてのセレクタは #cp .funcbody の中にあります 
+*/
+
+/* --- 全体レイアウト --- */
+#cp .funcbody {
+    font-family: sans-serif;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+/* --- 上部コントロール --- */
+#cp .funcbody .controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+}
+
+#cp .funcbody .controls .left-controls button {
+    margin-right: 10px;
+}
+
+#cp .funcbody .controls button,
+#cp .funcbody #add-block-btn,
+#cp .funcbody .block .delete-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#cp .funcbody .controls #save-btn {
+    background-color: #007bff;
+    color: white;
+}
+#cp .funcbody .controls #reset-all-btn {
+    background-color: #dc3545;
+    color: white;
+}
+#cp .funcbody .controls #copy-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+/* --- 最下部の追加ボタン --- */
+#cp .funcbody #add-block-btn {
+    width: 100%;
+    background-color: #17a2b8;
+    color: white;
+    margin-top: 10px;
+}
+
+/* --- ブロックコンテナ --- */
+#cp .funcbody #blocks-container {
+    min-height: 50px; /* ドラッグ操作のために最小の高さを確保 */
+}
+
+/* --- 個別ブロック --- */
+#cp .funcbody .block {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: -1px; /* ボーダーの重なりを解消 */
+    background: #ffffff;
+    cursor: move; /* ドラッグ可能を示すカーソル */
+    display: flex;
+    flex-wrap: wrap; /* レスポnシブ対応 */
+    align-items: flex-start;
+    gap: 10px;
+}
+
+/* 変更: .selector を .selector-start と .selector-end に */
+#cp .funcbody .block input.selector-start,
+#cp .funcbody .block input.selector-end {
+    flex: 1 1 150px; /* 伸縮性を持たせる */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: text; /* ドラッグ対象外であることを明示 */
+}
+
+/* 変更: .content の cursor を明示 */
+#cp .funcbody .block textarea.content {
+    flex: 2 1 250px; /* セレクタより幅広に */
+    height: 60px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: monospace;
+    resize: vertical; /* 縦方向のみリサイズ可 */
+    cursor: text; /* ドラッグ対象外であることを明示 */
+}
+
+/* 変更: .delete-btn の cursor を明示 */
+#cp .funcbody .block .delete-btn {
+    background-color: #ffc107;
+    color: #333;
+    flex-shrink: 0; /* 縮まないようにする */
+    cursor: pointer; /* ドラッグ対象外であることを明示 */
+}
+
+
+/* --- ドラッグ＆ドロップ用スタイル --- */
+#cp .funcbody .block.dragging {
+    opacity: 0.5;
+    background: #eef;
+}
+
+/* ドロップ可能な隙間を青く表示 */
+#cp .funcbody .drag-over {
+    height: 2px;
+    background-color: #007bff;
+    margin: 5px 0;
+}
