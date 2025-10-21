@@ -319,7 +319,7 @@ ${tableContent}
      */
     function copyPreviewHTML() {
         // (v1のまま)
-        const htmlToCopy = previewBox.innerHTML;
+        const htmlToCopy = previewBox.innerHTML.replace(/(\r\n|\n|\r)/g, '');
         if (!htmlToCopy) {
             alert('コピーする内容がありません。');
             return;
@@ -346,4 +346,5 @@ ${tableContent}
     // (v1) 初期バリデーションとプレビュー実行
     handleFeaturesValidation();
     updatePreview();
+
 });
