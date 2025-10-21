@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const downloadBtn2 = $('#download-2');
     const downloadBtn3 = $('#download-3');
     const downloadBtn4 = $('#download-4');
-    const downloadBtn5 = $('#download-5');
+    const downloadBtn7 = $('#download-7');
 
     // Canvas Context
     const pasteCtx = pasteCanvas.getContext('2d');
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         downloadBtn2.addEventListener('click', () => handleDownload(2));
         downloadBtn3.addEventListener('click', () => handleDownload(3));
         downloadBtn4.addEventListener('click', () => handleDownload(4));
-        downloadBtn5.addEventListener('click', () => handleDownload(5));
+        downloadBtn7.addEventListener('click', () => handleDownload(7));
     }
 
     // --- 色処理 ---
@@ -463,3 +463,4 @@ function drawCanvas(ctx, outputWidth, outputHeight, state) {
     initialize();
 
 });
+
