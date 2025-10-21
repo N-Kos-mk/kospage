@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const THUMBNAIL_SIZE = 500;
     const DOWNLOAD_TRIM_SIZE = 1200;
     const DOWNLOAD_THUMBNAIL_SIZE = 230;
+    const DOWNLOAD_CIRCUIT_SIZE = 550;
     const LOCAL_STORAGE_KEY = 'imageToolBgColor_v1';
 
     // --- 初期化 ---
@@ -428,23 +429,15 @@ function drawCanvas(ctx, outputWidth, outputHeight, state) {
         // ダウンロード
         if (number == 1) {
             drawCanvas(trimCtxDown, DOWNLOAD_THUMBNAIL_SIZE, DOWNLOAD_THUMBNAIL_SIZE, trimState);
-            downloadImage(downloadCanvasTrim, `${id}_1.jpg`);
+        } else if (number == 7) {
+            drawCanvas(trimCtxDown, DOWNLOAD_CIRCUIT_SIZE, DOWNLOAD_CIRCUIT_SIZE, trimState);
         } else {
             drawCanvas(trimCtxDown, DOWNLOAD_TRIM_SIZE, DOWNLOAD_TRIM_SIZE, trimState);
-            downloadImage(downloadCanvasTrim, `${id}_${number}.jpg`);
         }
+        downloadImage(downloadCanvasTrim, `${id}_${number}.jpg`);
         
 
         
-        /*/ 2. サムネイル (230x230)
-        const downloadCanvasThumb = document.createElement('canvas');
-        const thumbCtxDown = downloadCanvasThumb.getContext('2d');
-        
-        // drawCanvasをダウンロードサイズで実行
-        drawCanvas(thumbCtxDown, DOWNLOAD_THUMBNAIL_SIZE, DOWNLOAD_THUMBNAIL_SIZE, trimState);
-        
-        // ダウンロード
-        downloadImage(downloadCanvasThumb, `${id}_3.jpg`);*/
     }
 
     function downloadImage(canvas, filename) {
@@ -463,4 +456,5 @@ function drawCanvas(ctx, outputWidth, outputHeight, state) {
     initialize();
 
 });
+
 
