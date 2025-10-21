@@ -427,7 +427,7 @@ function drawCanvas(ctx, outputWidth, outputHeight, state) {
         
         // ダウンロード
         if (number == 1) {
-            drawCanvas(thumbCtxDown, DOWNLOAD_THUMBNAIL_SIZE, DOWNLOAD_THUMBNAIL_SIZE, trimState);
+            drawCanvas(trimCtxDown, DOWNLOAD_THUMBNAIL_SIZE, DOWNLOAD_THUMBNAIL_SIZE, trimState);
             downloadImage(downloadCanvasTrim, `${id}_1.jpg`);
         } else {
             drawCanvas(trimCtxDown, DOWNLOAD_TRIM_SIZE, DOWNLOAD_TRIM_SIZE, trimState);
@@ -461,4 +461,5 @@ function drawCanvas(ctx, outputWidth, outputHeight, state) {
 
     // --- 実行 ---
     initialize();
+
 });
