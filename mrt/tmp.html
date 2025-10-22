@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>クリップボード貼り付けボタン</title>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding: 24px; }
+    button { padding: 8px 12px; font-size: 16px; }
+    textarea { width: 100%; height: 200px; margin-top: 12px; font-family: monospace; font-size: 14px; }
+    .note { color: #666; margin-top: 8px; font-size: 13px; }
+    .error { color: #b00; margin-top: 8px; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <h1>クリップボードを貼り付け</h1>
+
+  <div>
+    <button id="pasteBtn">クリップボードの内容を貼り付け</button>
+    <button id="pasteIntoInputBtn">フォーカス先に貼り付け（paste イベント）</button>
+  </div>
+
+  <p class="note">※ ボタンを押した直後に、ブラウザがアクセス許可を求めることがあります。</p>
+
+  <textarea id="output" placeholder="ここにクリップボードのテキストが表示されます"></textarea>
+
+  <p class="note">または、任意の入力欄にフォーカスしてから「フォーカス先に貼り付け（paste イベント）」ボタンを押し、実際に Ctrl/Cmd+V で貼り付ける方法も利用できます（自動取得が制限される環境の回避策）。</p>
+
+  <p id="status" class="note"></p>
+  <p id="error" class="error"></p>
+
+  <script>
+// script.js — 全部出力しています
+const pasteBtn = document.getElementById('pasteBtn');
+const pasteIntoInputBtn = document.getElementById('pasteIntoInputBtn');
+const output = document.getElementById('output');
+const status = document.getElementById('status');
+const errorEl = document.getElementById('error');
+
+function setStatus(msg) {
+  status.textContent = msg;
+}
+function setError(msg) {
+  errorEl.textContent = msg || '';
+}
+
+// メイン：navigator.clipboard.readText() を使った貼り付け
+pasteBtn.addEventListener('click', async () => {
+  setError('');
+  setStatus('読み取り中…（ブラウザが許可を求める場合があります）');
+
+  // Clipboard API の存在チェック
+  if (!navigator.clipboard || !navigator.clipboard.readText) {
+    setError('このブラウザは Clipboard API の readText をサポートしていません。代替方法を試してください。');
+    setStatus('');
+    return;
+  }
+
+  try {
+    // 読み取りはユーザー操作（この click ハンドラ内）で呼ぶこと
+    const text = await navigator.clipboard.readText();
+    output.value = text;
+    setStatus('貼り付け完了');
+  } catch (err) {
+    // 権限拒否やその他のエラー
+    console.error(err);
+    setError('クリップボードの読み取りに失敗しました: ' + (err && err.message ? err.message : String(err)));
+    setStatus('');
+  }
+});
+
+// フォールバック：paste イベントでフォーカス先に貼り付ける（ユーザーが Ctrl/Cmd+V を押す必要あり）
+// 一部環境で navigator.clipboard が使えない場合に有用
+pasteIntoInputBtn.addEventListener('click', () => {
+  setError('');
+  setStatus('貼り付け先の入力欄にフォーカスし、Ctrl/Cmd+V を押してください。paste イベントで捕捉します。');
+
+  // 一時的に paste イベントを待ち受けるハンドラをつける
+  const onPaste = (ev) => {
+    ev.preventDefault();
+    // クリップボードのテキストは clipboardData から取れる
+    const pastedText = (ev.clipboardData && ev.clipboardData.getData)
+      ? ev.clipboardData.getData('text')
+      : null;
+
+    if (pastedText !== null) {
+      output.value = pastedText;
+      setStatus('paste イベントで取得しました');
+    } else {
+      setError('paste イベントからテキストを取得できませんでした。');
+    }
+
+    // ハンドラを外す
+    window.removeEventListener('paste', onPaste);
+  };
+
+  window.addEventListener('paste', onPaste, { once: true });
+});
+
+// 任意：ペーストイベントでも textarea に貼り付けたときに自動で拾う
+output.addEventListener('paste', (ev) => {
+  // output 自体への貼り付けなら何もしなくても textarea に入るが、
+  // clipboardData を使ってすぐに処理したければここで対応可
+  // 例: カスタム処理を行いたいとき
+  setStatus('textarea に直接貼り付けられました（paste イベント）');
+  setError('');
+});
+
+
+  </script>
+</body>
+</html>
