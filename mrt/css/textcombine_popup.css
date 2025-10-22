@@ -1,0 +1,60 @@
+#textcombine .funcbody #popupOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+  }
+  
+  /* ▼ ポップアップ本体 ▼ */
+  #textcombine .funcbody #popupWindow {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 420px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 1001;
+  }
+  
+  /* ▼ 入力欄とテキストエリア配置 ▼ */
+  #textcombine .funcbody #popupWindow input[type="text"] {
+    width: 40px;
+    text-align: center;
+    margin: 0 4px;
+  }
+  
+  #textcombine .funcbody #popupWindow textarea {
+    width: 100%;
+    margin-top: 10px;
+    resize: vertical;
+  }
+  
+  /* ▼ ボタン配置 ▼ */
+  #textcombine .funcbody .popup-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  #textcombine .funcbody .popup-buttons .right-buttons {
+    display: flex;
+    gap: 8px;
+  }
+  
+  #textcombine .funcbody button {
+    padding: 6px 12px;
+    border: 1px solid #888;
+    border-radius: 4px;
+    background-color: #f4f4f4;
+    cursor: pointer;
+  }
+  
+  #textcombine .funcbody button:hover {
+    background-color: #e0e0e0;
+  }

@@ -246,6 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
             saveToLocalStorage(); // (v2の処理)
         }
     }
+
     
     /**
      * ★追加: 仕様テーブルをリセット（空の1行）

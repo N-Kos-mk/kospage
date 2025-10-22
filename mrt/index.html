@@ -8,10 +8,12 @@
 <link rel="stylesheet" href="css/image.css">
 <link rel="stylesheet" href="css/cp.css">
 <link rel="stylesheet" href="css/textcombine.css">
+<link rel="stylesheet" href="css/textcombine_popup.css">
 <script src="js/script.js"></script>
 <script src="js/image.js"></script>
 <script src="js/cp.js"></script>
 <script src="js/textcombine.js"></script>
+<script src="js/textcombine_popup.js"></script>
 </head>
 <body>
 
@@ -37,13 +39,13 @@
                     <textarea id="tc-catchcopy" rows="1"></textarea>
                     
                     <label for="tc-intro">
-                        商品紹介 (1行)
+                        商品概要の説明
                         <button type="button" class="tc-clear-field" data-target="tc-intro">クリア</button>
                     </label>
                     <textarea id="tc-intro" rows="1"></textarea>
                     
                     <label for="tc-features">
-                        特長 (改行可)
+                        特長 - 箇条書きで
                         <button type="button" class="tc-clear-field" data-target="tc-features">クリア</button>
                     </label>
                     <textarea id="tc-features" rows="5">・</textarea>
@@ -52,6 +54,35 @@
                         仕様
                         <button type="button" class="tc-clear-field" data-target="tc-specs-body">テーブルリセット</button>
                     </label>
+                    <!-- 自動抽出 start -->
+
+                    <button id="openPopupBtn">表自動抽出</button>
+  
+                      <!-- ポップアップ背景 -->
+                      <div id="popupOverlay"></div>
+                  
+                      <!-- ポップアップ本体 -->
+                      <div id="popupWindow">
+                        <h2>表自動抽出</h2>
+                        <ul>
+                          <li>前半： [<input type="text" id="preStart" value="">] 〜 [<input type="text" id="preEnd" value="">] まで</li>
+                          <li>後半： [<input type="text" id="postStart" value="">] 〜 改行 まで</li>
+                        </ul>
+                  
+                        <textarea id="popupTextarea" placeholder="ここにテキストを入力" rows="6"></textarea>
+                  
+                        <div class="popup-buttons">
+                          <button id="loadClipboardBtn">クリップボードから読み込み</button>
+                          <div class="right-buttons">
+                            <button id="cancelBtn">キャンセル</button>
+                            <button id="confirmBtn">決定</button>
+                          </div>
+                        </div>
+                      </div>
+
+                    <!-- 自動抽出 end  -->
+
+
                     <table id="tc-specs">
                         <tbody id="tc-specs-body">
                             <tr>
