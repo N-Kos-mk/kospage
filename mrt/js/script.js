@@ -16,10 +16,20 @@ document.addEventListener("DOMContentLoaded", () => {
         page.classList.toggle('active', i === index);
         tabbar.children[i].classList.toggle('active', i === index);
         });
+        localStorage.setItem('activeTabIndex', index);
+    }
+
+    function loadLastActiveTab() {
+        const savedIndex = localStorage.getItem('activeTabIndex');
+        if (savedIndex !== null) {
+            showTab(parseInt(savedIndex, 10));
+        } else {
+            showTab(0);
+        }
     }
 
     // 初期タブ
-    showTab(0);
+    loadLastActiveTab();
 
     // ===== タイマー機能 =====
     /*let timerInterval;

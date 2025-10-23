@@ -193,6 +193,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    featuresInput.addEventListener("keydown", (e) => {
+        const isMac = navigator.platform.toUpperCase().includes('MAC');
+        const boldKey = isMac ? e.metaKey : e.ctrlKey;
+      
+        if (boldKey && e.key.toLowerCase() === "b") {
+          e.preventDefault();
+      
+          const start = featuresInput.selectionStart;
+          const end = featuresInput.selectionEnd;
+          const selectedText = featuresInput.value.substring(start, end);
+      
+          // 太字Markdownに変換
+          const newText = `**${selectedText || "太字"}**`;
+      
+          featuresInput.setRangeText(newText, start, end, "end");
+        }
+        updatePreview();
+        saveToLocalStorage();
+    });
+
     
     // --- 関数定義 ---
     
@@ -291,6 +311,9 @@ document.addEventListener('DOMContentLoaded', () => {
             htmlString += `<h3>●特長</h3>\n<p>${featuresHTML}</p>\n`;
         }
         
+        // 太字対応
+        htmlString = htmlString.replace(/\*\*(.+?)\*\*/g, '<span style="font-weight: bold;">$1</span>');
+
         let tableContent = '';
         let hasSpecContent = false;
         const rows = specsBody.querySelectorAll('tr');
@@ -314,7 +337,7 @@ ${tableContent}
         }
         previewBox.innerHTML = htmlString;
     }
-
+    window.updatePreview = updatePreview;
     /**
      * (v1) クリップボードにプレビューのHTMLをコピー
      */

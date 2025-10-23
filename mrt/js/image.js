@@ -190,7 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const ctx = pasteCtx;
         const cw = canvas.width;
         const ch = canvas.height;
-
         // 1. 背景色で塗りつぶし
         ctx.fillStyle = backgroundColor;
         ctx.fillRect(0, 0, cw, ch);

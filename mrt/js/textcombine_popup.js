@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const openBtn = document.querySelector("#textcombine .funcbody #openPopupBtn");
+    const engineerExtract = document.querySelector("#textcombine .funcbody #engineerExtract");
     const overlay = document.querySelector("#textcombine .funcbody #popupOverlay");
     const popup = document.querySelector("#textcombine .funcbody #popupWindow");
     const cancelBtn = document.querySelector("#textcombine .funcbody #cancelBtn");
@@ -60,9 +61,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const result = extractTableText(p1, p2, p3, text);
         console.log(result);
-
+        if (result.length > 0) {
+            for (const [key, value] of result) {
+                addSpecRowFromText(key, value, true);
+            }
+        }
         closePopup();
     });
+
+    engineerExtract.addEventListener("click", async () => {
+        var text = "";
+        try {
+            text = await navigator.clipboard.readText();
+            textarea.value = text;
+          } catch (err) {
+            console.error(err);
+            alert('クリップボードの読み取りに失敗しました: ' + (err && err.message ? err.message : String(err)));
+        }
+        const result = extractTableText("・", "：", "：", text);
+        //console.log(result);
+        if (result.length > 0) {
+            for (const [key, value] of result) {
+                addSpecRowFromText(key, value, true);
+            }
+        }
+    });
+    
 
 
     pasteBtn.addEventListener('click', async () => {      
@@ -92,6 +116,19 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem('tc_features_popup_1', p1);
             localStorage.setItem('tc_features_popup_2', p2);
             localStorage.setItem('tc_features_popup_3', p3);
+
+            const specsData = [];
+            const rows = specsBody.querySelectorAll('tr');
+            
+            rows.forEach(row => {
+                const inputs = row.querySelectorAll('input');
+                specsData.push({
+                    key: inputs[0].value,
+                    value: inputs[1].value
+                });
+            });
+            
+            localStorage.setItem('tc_specs', JSON.stringify(specsData));
             
         } catch (e) {
             console.error('LocalStorageへの保存に失敗しました(popup):', e);
@@ -121,17 +158,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function addSpecRowFromText(doSave = true) {
+    function addSpecRowFromText(value1 = '', value2 = '', doSave = true) {
         const tr = document.createElement('tr');
         // ★変更: 削除ボタンのセルを追加
         tr.innerHTML = `
-            <td><input type="text" placeholder="項目名"></td>
-            <td><input type="text" placeholder="値"></td>
+            <td><input type="text" value="${value1}"></td>
+            <td><input type="text" value="${value2}"></td>
             <td class="tc-spec-actions">
                 <button type="button" class="tc-remove-spec-row">×</button>
             </td>
         `;
         specsBody.appendChild(tr);
+        window.updatePreview();
         
         if (doSave) {
             saveToLocalStorage_popup(); // (v2の処理)
