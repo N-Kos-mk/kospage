@@ -308,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const featuresVal = featuresInput.value.trim();
         if (featuresVal) {
             const featuresHTML = escapeHTML(featuresVal).replace(/\n/g, '<br>\n');
-            htmlString += `<h3>●特長</h3>\n<p>${featuresHTML}</p>\n`;
+            htmlString += `<h3>●特長</h3>\n<p>${featuresHTML}</p>\n<h3>●仕様</h3>`;
         }
         
         // 太字対応
@@ -372,3 +372,4 @@ ${tableContent}
     updatePreview();
 
 });
+
