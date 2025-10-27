@@ -70,7 +70,7 @@
 /* 右側パネル */
 .funcbody .right-panel {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 20px;
     flex-grow: 1;
     min-width: 300px; /* 折り返し時の最小幅 */
@@ -129,6 +129,8 @@
 
 /* ダウンロードボタン */
 .funcbody .download-area {
+    display: flex;
+    flex-direction: row;
     margin-top: 10px; 
 }
 
@@ -144,4 +146,5 @@
 
 .funcbody .download-button:hover {
     background-color: #218838;
+
 }
