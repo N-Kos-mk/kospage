@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     engineerExtract.addEventListener("click", async () => {
+        resetSpecTable();
         var text = "";
         try {
             text = await navigator.clipboard.readText();
@@ -86,6 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
+
+    function resetSpecTable() {
+        specsBody.innerHTML = ''; // 全行削除
+    }
     
 
 
@@ -176,4 +181,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     loadFromLocalStorage();
+
 });
